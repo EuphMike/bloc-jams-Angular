@@ -37,11 +37,19 @@
             return albumPicasso;
         };
 
-        return Fixtures;
-    }
+        Fixtures.getCollection = function (numberOfAlbums) {
+            var albums = [];
+            for (var i=0; i < numberOfAlbums; i++) {
+                albums.push(albumPicasso);
+            }
+            return albums;
+          };
+            return Fixtures;
+          };
 
-    angular
-        .module('blocJams')
-        .factory('Fixtures', Fixtures);
+          angular
+              .module('blocJams')
+              .factory('Fixtures', Fixtures);
 })();
+
 // This service will pull the album data (above) into the app.
