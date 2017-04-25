@@ -1,8 +1,7 @@
 (function(){
-    function AlbumCtrl(Fixtures) {
-      // Service injected into function AlbumCtrl
+    function AlbumCtrl(Fixtures, SongPlayer) {
       this.albumInfo = Fixtures.getAlbum();
-      console.log(this.albumInfo);
+      this.SongPlayer = SongPlayer;
     }
 
     angular
