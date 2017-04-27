@@ -1,6 +1,11 @@
 (function() {
-    function SongPlayer() {
+    function SongPlayer(Fixtures) {
          var SongPlayer = {};
+         /**
+         * @desc Gets album from Fixtures.js Service
+         * @type {Object}
+         */
+         var currentAlbum = Fixtures.getAlbum();
          /**
          * @desc Buzz object audio file
          * @type {Object}
@@ -33,6 +38,19 @@
             song.playing = true;
          }
 
+         /**
+         * @function getSongIndex
+         * @desc Returns index of Song
+         * @param {Object} song
+         */
+         var getSongIndex = function(song) {
+            return currentAlbum.songs.indexOf(song);
+         };
+
+         /**
+         * @desc Active song object from list of songs
+         * @type {Object}
+         */
          SongPlayer.currentSong = null;
 
          /**
@@ -55,15 +73,35 @@
           /* @param {Object} song
           */
           SongPlayer.pause = function(song) {
-              song = song || SongPlayer.currentsong;
+              song = song || SongPlayer.currentSong;
+              console.log(song);
               currentBuzzObject.pause();
               song.playing = false;
-         };
+          };
+
+          /**
+          * @function SongPlayer.previous
+          * @desc Plays previous song 
+          * @param {Object} song
+          */
+          SongPlayer.previous = function() {
+              var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+              currentSongIndex --;
+
+              if (currentSongIndex < 0) {
+                  currentBuzzObject.stop();
+                  SongPlayer.currentSong.playing = null;
+              } else {
+                  var song = currentAlbum.songs[currentSongIndex];
+                  setSong(song);
+                  playSong(song);
+              }
+          };
 
       return SongPlayer;
     }
 
     angular
         .module('blocJams')
-        .factory('SongPlayer', SongPlayer);
+        .factory('SongPlayer', ['Fixtures', SongPlayer]);
 })();
