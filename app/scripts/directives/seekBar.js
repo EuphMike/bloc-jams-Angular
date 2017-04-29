@@ -60,6 +60,7 @@
                             notifyOnChange(scope.value);
                         });
                     });
+                 };
 
                 var notifyOnChange = function(newValue) {
                     if (typeof scope.onChange === 'function') {
@@ -71,8 +72,7 @@
                         $document.unbind('mousemove.thumb');
                         $document.unbind('mouseup.thumb');
                     });
-                };
-            }
+              }
         };
     }
 
