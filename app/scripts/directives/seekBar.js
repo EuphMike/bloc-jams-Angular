@@ -62,21 +62,23 @@
                     });
                  };
 
-                var notifyOnChange = function(newValue) {
-                    if (typeof scope.onChange === 'function') {
-                        scope.onChange({value: newValue});
-                    }
-                };
+                $document.bind('mouseup.thumb', function() {
+                      $document.unbind('mousemove.thumb');
+                      $document.unbind('mouseup.thumb');
 
-                    $document.bind('mouseup.thumb', function() {
-                        $document.unbind('mousemove.thumb');
-                        $document.unbind('mouseup.thumb');
                     });
-              }
-        };
-    }
+                 };
 
-    angular
-        .module('blocJams')
-        .directive('seekBar', ['$document', seekBar]);
-})();
+                 var notifyOnChange = function(newValue) {
+                     if (typeof scope.onChange === 'function') {
+                     scope.onChange({value: newValue});
+                  }
+               };
+            }
+         };
+     };
+
+        angular
+            .module('blocJams')
+            .directive('seekBar', ['$document', seekBar]);
+     })();
