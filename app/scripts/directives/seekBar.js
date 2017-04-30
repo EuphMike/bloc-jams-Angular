@@ -60,25 +60,25 @@
                             notifyOnChange(scope.value);
                         });
                     });
-                 };
 
-                $document.bind('mouseup.thumb', function() {
-                      $document.unbind('mousemove.thumb');
-                      $document.unbind('mouseup.thumb');
+                 $document.bind('mouseup.thumb', function() {
+                     $document.unbind('mousemove.thumb');
+                     $document.unbind('mouseup.thumb');
 
-                    });
-                 };
+                   });
+                };
 
-                 var notifyOnChange = function(newValue) {
-                     if (typeof scope.onChange === 'function') {
-                     scope.onChange({value: newValue});
-                  }
+              var notifyOnChange = function(newValue) {
+                  if (typeof scope.onChange === 'function') {
+                      scope.onChange({value: newValue});
+
+                   }
                };
             }
-         };
-     };
+        };
+    };
 
-        angular
-            .module('blocJams')
-            .directive('seekBar', ['$document', seekBar]);
-     })();
+    angular
+        .module('blocJams')
+        .directive('seekBar', ['$document', seekBar]);
+})();
